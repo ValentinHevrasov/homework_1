@@ -71,10 +71,6 @@ class JuniorDeveloper < Developer
   MAX_TASKS = 5
   TYPE = :junior
 
-  def type
-    @type
-  end
-
   def add_task (task)
     task.size >= 20 ? task_20 : super
   end
@@ -95,10 +91,6 @@ end
 class SeniorDeveloper < Developer
   MAX_TASKS = 15
   TYPE = :senior
-
-  def type
-    @type
-  end
 
   def work!
     rand(2).zero? ? (puts 'Что-то лень') : 2.times{work_task}
