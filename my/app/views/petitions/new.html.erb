@@ -1,0 +1,15 @@
+<%= form_for :petition, url: petitions_path do |f| %>
+  <p>
+    <%= f.label :title, 'Тема' %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :text, 'Текст петиции' %><br>
+    <%= f.text_area :text %>
+  </p>
+
+  <p>
+    <%= submit_tag 'Создать' %>
+  </p>
+<% end %>

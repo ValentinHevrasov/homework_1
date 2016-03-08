@@ -1,0 +1,15 @@
+<h1>Все петиции</h1>
+
+<table style="border: solid 2px red">
+  <tr>
+    <th style="border: solid 2px black">Тема</th>
+    <th style="border: solid 2px black">Автор</th>
+  </tr>
+
+<% @petition.each do |petition| %>
+  <tr>
+    <td style="border: solid 2px black"><%= link_to petition.title, petition %></td>
+    <td style="border: solid 2px black"><%= petition.user_id %></td>
+  </tr>
+<% end %>
+</table>
