@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get "log_out" => "sessions#destroy", :as => "log_out"
   # get "log_out" => "sessions#destroy", :as => "log_out"
-  # get "log_out" => "sessions#destroy", :as => "log_out"
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
   # get "my_petit" => "petitions#index", :as => "my_petit"
   # get 'sessions/new'
 

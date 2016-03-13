@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "My" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Петиции" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -45,7 +45,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Онлайн петиции нашего района</a>
+        <a class="navbar-brand" href="/">Онлайн петиции нашего района</a>
         <div class="pull-right" style="margin: 10px">
           <span >
           <% if current_user %>
@@ -62,10 +62,14 @@
 
     <div class="container">
       <div class="row">
+        <div class="col-lg-9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list la">
-              <li><h4><%= link_to "Все петиции", petitions_path  %></h4></li>
+              <li><h4><%= link_to "Все петиции", petition_path  %></h4></li>
               <li><h4><%= link_to "Создать петицию", new_petition_path  %></h4></li>
               <% if current_user %>
                 <li><h4><%= link_to "Мои петиции", petitions_path(my: true)  %></h4></li>
@@ -73,10 +77,6 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
       </div><!--/row-->
 
       <footer>
