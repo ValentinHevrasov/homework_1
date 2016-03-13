@@ -1,15 +1,12 @@
 <h1>Войти</h1>
-
 <%= form_tag sessions_path do %>
-<form class="form-inline">
   <div class="form-group" style="width: 50%">
-    <label class="sr-only" for="exampleInputEmail2">""Электронная почта</label>
-    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Введите email">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email, params[:email], class: 'form-control' %>
   </div>
   <div class="form-group" style="width: 50%">
-    <label class="sr-only" for="exampleInputPassword2">Пароль</label>
-    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Введите пароль">
+    <%= label_tag :password, 'Пароль' %><br />
+    <%= password_field_tag :password, nil, class: 'form-control' %>
   </div>
-  <button type="submit" class="btn btn-primary">Войти</button>
-</form>
+  <div class="actions"><%= submit_tag "Войти", class: 'btn btn-primary' %></div>
 <% end %>

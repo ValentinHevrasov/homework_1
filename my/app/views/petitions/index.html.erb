@@ -1,16 +1,35 @@
 <h1><%= params[:my] ? 'Мои' : 'Все' %> петиции</h1>
+  <% if params[:my] %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Петиция</th>
+        <th>Редактирование</th>
+      </tr>
+      </thead>
+      <% @petition.each do |petition| %>
+        <tr>
+          <td><%= link_to petition.title, petition_path(petition) %></td>
+          <td><%= link_to 'Редактировать', edit_petition_path(petition) %></td>
+          <td><%= link_to 'Удалить', petition,
+                  method: :delete,
+                  data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+        </tr>
+      <% end %>
+    </table>
 
-
-<table style="border: solid 2px red">
-  <tr>
-    <th style="border: solid 2px black">Тема</th>
-    <th style="border: solid 2px black">Автор</th>
-  </tr>
-
-<% @petition.each do |petition| %>
-  <tr>
-    <td style="border: solid 2px black"><%= link_to petition.title, petition %></td>
-    <td style="border: solid 2px black"><%= petition.user_id %></td>
-  </tr>
-<% end %>
-</table>
+  <% else %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Петиция</th>
+        <th>Без редактирование</th>
+      </tr>
+      </thead>
+      <% @petition.each do |petition| %>
+        <tr>
+          <td><%= link_to petition.title, petition_path(petition) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>

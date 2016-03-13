@@ -8,6 +8,9 @@
   </tr>
   </thead>
   <% @petition.each do |petition| %>
-    <%= render 'petitions/petition', petition: petition %>
+  <tr>
+    <td><%= link_to petition.title, petition_path(petition) %></td>
+    <td><%= petition.user.petition_name %></td>
+  </tr>
   <% end %>
 </table>
