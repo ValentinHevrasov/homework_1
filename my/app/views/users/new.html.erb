@@ -1,0 +1,35 @@
+<h1>Регистрация</h1>
+
+<%= form_for @user do |f| %>
+<% if @user.errors.any? %>
+<div class="error_messages">
+<h2>Ошибка при регистрации</h2>
+<ul>
+<% for message in @user.errors.full_messages %>
+<li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<p>
+<p>
+<%= f.label :name, 'Имя' %><br />
+<%= f.text_field :name %>
+</p>
+<p>
+<%= f.label :surname, 'Фамилия' %><br />
+<%= f.text_field :surname %>
+</p>
+<%= f.label :email, 'Электронная почта' %><br />
+<%= f.text_field :email %>
+</p>
+<p>
+<%= f.label :password, 'Пароль' %><br />
+<%= f.password_field :password %>
+</p>
+<p>
+<%= f.label :password_confirmation, 'Подтвердите пароль' %><br />
+<%= f.password_field :password_confirmation %>
+</p>
+<p class="button"><%= submit_tag 'Сохранить' %></p>
+<% end %>
