@@ -2,7 +2,8 @@ class PetitionsController < ApplicationController
   # before_filter :authorize, only: [:edit, :update]
 
   def index
-    @petition = Petition.last(10)
+    @petition = Petition.all
+    @petition = @petition.where(user: current_user) if params[:my]
   end
 
   def show
@@ -25,6 +26,6 @@ class PetitionsController < ApplicationController
 
   private
   def petition_params
-    params.require(:petition).permit(:title, :text)
+    params.require(:petition).permit(:id, :title, :text)
   end
 end

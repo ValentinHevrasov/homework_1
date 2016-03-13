@@ -25,7 +25,7 @@
         <%= link_to "Все петиции", petitions_path %>
         <% if current_user %>
           <%= link_to "Создать петицию", new_petition_path %>
-          <%= link_to "Мои петиции" %>
+          <%= link_to "Мои петиции", petitions_path(my: true) %>
         <% else %>
           <%= link_to "Создать петицию", new_session_path %>
         <% end %>
