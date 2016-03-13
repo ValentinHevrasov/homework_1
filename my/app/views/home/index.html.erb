@@ -5,12 +5,14 @@
   <tr>
     <th>Петиция</th>
     <th>Автор</th>
+    <th>Дата создания</th>
   </tr>
   </thead>
   <% @petition.each do |petition| %>
   <tr>
     <td><%= link_to petition.title, petition_path(petition) %></td>
     <td><%= petition.user.petition_name %></td>
+    <td><%= petition.created_at.strftime('%d/%m/%Y %R') %></td>
   </tr>
   <% end %>
 </table>
