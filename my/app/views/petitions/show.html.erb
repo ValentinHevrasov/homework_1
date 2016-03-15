@@ -1,11 +1,17 @@
-<p>
-  <strong>Тема</strong>
-  <%= @petition.title %>
-</p>
+<h3> <%= @petition.title %> </h3>
+<p> <%= @petition.created_at.strftime('%d/%m/%Y %R') %> </p>
 
 <p>
   <strong>Текст петиции:</strong>
   <%= @petition.text %>
 </p>
 
+<p>Голосов: <%= @petition.votes.count %></p>
 
+
+<p> <%if @petition.can_vote_on?(current_user) %>
+    Вы уже голосовали
+  <% else %>
+    <%= button_to('Проголосовать', votes_path({petition_id: @petition.id})) %>
+  <% end %>
+</p>

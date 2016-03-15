@@ -27,7 +27,7 @@ class PetitionsController < ApplicationController
   def update
     @petition = Petition.find(params[:id])
     if @petition.update(petition_params)
-      redirect_to @petition
+      redirect_to @petition, notice: "Петиция обновлена"
     else
       render 'edit'
     end

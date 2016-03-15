@@ -4,12 +4,16 @@
       <thead>
       <tr>
         <th>Петиция</th>
-        <th>Редактирование</th>
+        <th>Голоса</th>
+        <th>Дата создания</th>
+        <th colspan="2" class="text-center">Редактирование</th>
       </tr>
       </thead>
       <% @petition.each do |petition| %>
         <tr>
           <td><%= link_to petition.title, petition_path(petition) %></td>
+          <td><%= petition.votes.count %></td>
+          <td><%= petition.created_at.strftime('%d/%m/%Y %R') %></td>
           <td><%= link_to 'Редактировать', edit_petition_path(petition) %></td>
           <td><%= link_to 'Удалить', petition,
                   method: :delete,
@@ -23,6 +27,7 @@
       <tr>
         <th>Петиция</th>
         <th>Автор</th>
+        <th>Голоса</th>
         <th>Дата создания</th>
       </tr>
       </thead>
@@ -30,6 +35,7 @@
         <tr>
           <td><%= link_to petition.title, petition_path(petition) %></td>
           <td><%= petition.user.petition_name %></td>
+          <td><%= petition.votes.count %></td>
           <td><%= petition.created_at.strftime('%d/%m/%Y %R') %></td>
         </tr>
       <% end %>

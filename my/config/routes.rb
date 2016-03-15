@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :petitions
   resources :users
   resources :sessions
+  resources :votes
 
   # Example resource route with options:
   #   resources :products do
