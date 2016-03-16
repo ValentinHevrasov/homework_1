@@ -45,7 +45,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#"><%= link_to "Онлайн петиции нашего района", root_path %></a>
+        <a class="navbar-brand" href="#">
+          <li><h1 class="text-center">
+            <%= link_to "Онлайн петиции нашего района", root_path %>
+          </h1></li>
+        </a>
         <div class="pull-right" style="margin: 10px">
           <span >
           <% if current_user %>
@@ -62,24 +66,25 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-xs-8">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+
+        <div class="col-xs-4">
           <div class="well sidebar-nav">
             <ul class="nav nav-list la">
-              <li><h4><%= link_to "Все петиции", petitions_path  %></h4></li>
+              <li><h5><%= link_to "Все петиции", petitions_path  %></h5></li>
               <% if current_user %>
-                <li><h4><%= link_to "Создать петицию", new_petition_path  %></h4></li>
-                <li><h4><%= link_to "Мои петиции", petitions_path(my: true)  %></h4></li>
+                <li><h5><%= link_to "Создать петицию", new_petition_path  %></h5></li>
+                <li><h5><%= link_to "Мои петиции", petitions_path(my: true)  %></h5></li>
               <% else %>
-                <li><h4><%= link_to "Создать петицию", login_path  %></h4></li>
+                <li><h5><%= link_to "Создать петицию", login_path  %></h5></li>
               <% end %>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
       </div><!--/row-->
 
       <footer>
