@@ -1,16 +1,43 @@
 <h1><%= params[:my] ? 'Мои' : 'Все' %> петиции</h1>
-
-
-<table style="border: solid 2px red">
-  <tr>
-    <th style="border: solid 2px black">Тема</th>
-    <th style="border: solid 2px black">Автор</th>
-  </tr>
-
-<% @petition.each do |petition| %>
-  <tr>
-    <td style="border: solid 2px black"><%= link_to petition.title, petition %></td>
-    <td style="border: solid 2px black"><%= petition.user_id %></td>
-  </tr>
-<% end %>
-</table>
+  <% if params[:my] %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Петиция</th>
+        <th>Голоса</th>
+        <th>Дата создания</th>
+        <th colspan="2" class="text-center">Редактирование</th>
+      </tr>
+      </thead>
+      <% @petition.each do |petition| %>
+        <tr>
+          <td><%= link_to petition.title, petition_path(petition) %></td>
+          <td><%= petition.votes.count %></td>
+          <td><%= petition.created_at.strftime('%d/%m/%Y %R') %></td>
+          <td><%= link_to 'Редактировать', edit_petition_path(petition) %></td>
+          <td><%= link_to 'Удалить', petition,
+                  method: :delete,
+                  data: { confirm: 'Вы действительно хотите удалить?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Петиция</th>
+        <th>Автор</th>
+        <th>Голоса</th>
+        <th>Дата создания</th>
+      </tr>
+      </thead>
+      <% @petition.each do |petition| %>
+        <tr>
+          <td><%= link_to petition.title, petition_path(petition) %></td>
+          <td><%= petition.user.petition_name %></td>
+          <td><%= petition.votes.count %></td>
+          <td><%= petition.created_at.strftime('%d/%m/%Y %R') %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>

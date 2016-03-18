@@ -13,6 +13,10 @@ class PetitionsController < ApplicationController
   def new
   end
 
+  def edit
+    @petition = Petition.find(params[:id])
+  end
+
   def create
     @petition = Petition.new(petition_params)
     @petition.user_id = current_user.id
@@ -20,8 +24,24 @@ class PetitionsController < ApplicationController
     redirect_to @petition, notice: "Петиция добавлена"
   end
 
+  def update
+    @petition = Petition.find(params[:id])
+    if @petition.update(petition_params)
+      redirect_to @petition, notice: "Петиция обновлена"
+    else
+      render 'edit'
+    end
+  end
+
   def petition_name
     @petition.user.name
+  end
+
+  def destroy
+    @petition = Petition.find(params[:id])
+    @petition.destroy
+    params[:my] = true
+    redirect_to root_path, notice: "Петиция удалена"
   end
 
   private
