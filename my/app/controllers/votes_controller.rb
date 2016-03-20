@@ -1,5 +1,5 @@
 class VotesController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize_user
 
   def create
     vote = current_user.votes.create(petition_params)
