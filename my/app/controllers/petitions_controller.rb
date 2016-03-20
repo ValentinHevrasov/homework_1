@@ -18,13 +18,15 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = Petition.new(petition_params)
+    @petition = Petition.create(petition_params)
     # @petition = Petition.new(petition_params.merge({user: User.last}))
-    UserMailer.petition_created(petition).deliver_now
-    # UserMailer.petition_created(petition).deliver_later
-    # Rails.logger.info 'After mailer'
     @petition.user_id = current_user.id
     @petition.save
+    # byebug
+    # UserMailer.petition_created(@petition).deliver_now
+    UserMailer.petition_created(@petition).deliver_later
+    
+    Rails.logger.info 'After mailer'
     redirect_to @petition, notice: "Петиция добавлена"
   end
 
