@@ -21,13 +21,7 @@ class PetitionsController < ApplicationController
     @petition = Petition.create(petition_params)
     @petition.user_id = current_user.id
     @petition.save
-    # UserMailer.petition_created(@petition).deliver_now
     UserMailer.petition_created(@petition).deliver_later
-    
-# UserMailer.admin_votes(@petition).deliver_later
-# UserMailer.votes_good(@petition).deliver_later
-# UserMailer.votes_bad(@petition).deliver_later
-
     Rails.logger.info 'After mailer'
     redirect_to @petition, notice: "Петиция добавлена"
   end

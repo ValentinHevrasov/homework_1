@@ -8,10 +8,10 @@
 set :environment, :development
 set :output, "log/cron.log"
 #
-every 10.minutes do
+every 1.day, :at => '0:01 am' do
   # command "/usr/bin/some_great_command"
   # runner "MyModel.some_method"
-  rake "petition:check_old"
+  rake "petition:block_old"
 end
 #
 # every 4.days do

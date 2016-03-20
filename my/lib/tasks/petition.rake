@@ -1,11 +1,13 @@
 namespace :petition do
-  desc "Deleting old petitions"
-  task check_old: :environment do
-  	p '________________starting deleting old petitions'
-    petition = Petition.first
-    petition.destroy!
-    # Rails.logger.info 'destroyed! id: ' + petition.id.to_s
-    p '________________destroyed! id: ' + petition.id.to_s
+  desc "Block old petitions"
+  task block_old: :environment do
+    # VotingEndingJob.perform_later
+    petitions = Petition.where(expired: nil)
+    petitions.each do |petition|
+      if petition.expired_petition?(petition)
+        petition.update(expired: true)
+        UserMailer.votes_bad(petition).deliver_later
+      end
+    end
   end
-
 end
