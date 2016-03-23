@@ -1,0 +1,4 @@
+<p> Добрый день <%= @petition.user.name %></p>
+<p> Петиция "<%= @petition.title %>" создана </p>
+<p> <%= @petition.text %> </p>
+<p> Петиция создана <%= @petition.created_at.strftime('%d/%m/%Y %R') %>. Для голосования будет доступна в течении 30 дней</p>

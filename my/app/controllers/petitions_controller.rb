@@ -1,5 +1,5 @@
 class PetitionsController < ApplicationController
-  # before_filter :authorize, only: [:edit, :update]
+  before_filter :authorize_user, only: [:edit, :update]
 
   def index
     @petition = Petition.all
@@ -18,9 +18,11 @@ class PetitionsController < ApplicationController
   end
 
   def create
-    @petition = Petition.new(petition_params)
+    @petition = Petition.create(petition_params)
     @petition.user_id = current_user.id
     @petition.save
+    UserMailer.petition_created(@petition).deliver_later
+    Rails.logger.info 'After mailer'
     redirect_to @petition, notice: "Петиция добавлена"
   end
 

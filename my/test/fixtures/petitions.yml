@@ -2,10 +2,12 @@
 
 one:
   title: MyString
-  text: MyText
+  text: MyString
+  expired: false
   user_id: 
 
 two:
   title: MyString
-  text: MyText
+  text: MyString
+  expired: false
   user_id: 
